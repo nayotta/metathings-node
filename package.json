@@ -1,0 +1,28 @@
+{
+  "name": "@nayotta/metathings-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "generate": "bash generate.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nayotta/metathings-node.git"
+  },
+  "author": "nayotta-fe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nayotta/metathings-node/issues"
+  },
+  "homepage": "https://github.com/nayotta/metathings-node#readme",
+  "dependencies": {
+    "google-protobuf": "^3.9.1",
+    "grpc": "^1.23.2",
+    "grpc-tools": "^1.8.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.2.2"
+  }
+}
