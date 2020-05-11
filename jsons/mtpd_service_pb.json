@@ -1,0 +1,78 @@
+{
+  "nested": {
+    "mtpd": {
+      "nested": {
+        "ListDevicesByApplicationRequest": {
+          "fields": {
+            "activated": {
+              "type": "bool",
+              "id": 1
+            }
+          }
+        },
+        "Label": {
+          "fields": {
+            "key": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "Device": {
+          "fields": {
+            "id": {
+              "type": "string",
+              "id": 1
+            },
+            "instName": {
+              "type": "string",
+              "id": 2
+            },
+            "name": {
+              "type": "string",
+              "id": 3
+            },
+            "status": {
+              "type": "string",
+              "id": 4
+            },
+            "kind": {
+              "type": "string",
+              "id": 5
+            },
+            "template": {
+              "type": "string",
+              "id": 6
+            },
+            "labels": {
+              "rule": "repeated",
+              "type": "Label",
+              "id": 7
+            }
+          }
+        },
+        "ListDevicesByApplicationResponse": {
+          "fields": {
+            "devices": {
+              "rule": "repeated",
+              "type": "Device",
+              "id": 1
+            }
+          }
+        },
+        "MetaPlatformSrv": {
+          "methods": {
+            "ListDevicesByApplication": {
+              "requestType": "ListDevicesByApplicationRequest",
+              "responseType": "ListDevicesByApplicationResponse"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package mtpd;
+
+message ListDevicesByApplicationRequest {
+    bool activated = 1;
+}
+message Label {
+    string key = 1;
+    string value = 2;
+}
+message Device {
+    string id = 1;
+    string inst_name = 2;
+    string name = 3;
+    string status = 4;
+    string kind = 5;
+    string template = 6;
+    repeated Label labels =7;
+}
+
+message ListDevicesByApplicationResponse {
+    repeated Device devices = 1;
+}
+
+service MetaPlatformSrv {
+    rpc ListDevicesByApplication (ListDevicesByApplicationRequest) returns (ListDevicesByApplicationResponse) {}
+}
