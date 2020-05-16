@@ -17,6 +17,8 @@
 
 - clone proto
 
+  - [https://github.com/nayotta/proto-to-json](https://github.com/nayotta/proto-to-json)
+
   - 最好能安装好 go 开发 `metathings` 的环境，克隆 `metathings` 库下来，然后安装好其protos所需要的依赖防止与`$GOPATH/src/github.com`下边；
 
   - 如果选择不去安装go的开发环境，可选择直接克隆metathings库到某处，然后在每一个proto的编译环境下添加对应的依赖文件，从而进行一一编译，但不推荐此方法；

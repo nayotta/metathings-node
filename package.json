@@ -1,11 +1,12 @@
 {
   "name": "@nayotta/metathings-node",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "generate": "bash generate.sh"
+    "generate": "bash generate.sh",
+    "test": "./node_modules/.bin/mocha --file test/**/*_test.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,12 @@
     "protobufjs": "^6.9.0"
   },
   "devDependencies": {
-    "eslint": "^6.2.2"
-  }
+    "eslint": "^6.2.2",
+    "mocha": "^7.1.2",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
