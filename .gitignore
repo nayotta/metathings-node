@@ -1,5 +1,8 @@
 node_modules
 sources
 
+# metathings
+metathings
+
 # mac
 .DS_Store

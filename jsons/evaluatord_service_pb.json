@@ -44,6 +44,42 @@
                         "ListEvaluatorsBySource": {
                           "requestType": "ListEvaluatorsBySourceRequest",
                           "responseType": "ListEvaluatorsBySourceResponse"
+                        },
+                        "ListTasksBySource": {
+                          "requestType": "ListTasksBySourceRequest",
+                          "responseType": "ListTasksBySourceResponse"
+                        },
+                        "GetTask": {
+                          "requestType": "GetTaskRequest",
+                          "responseType": "GetTaskResponse"
+                        },
+                        "CreateTimer": {
+                          "requestType": "CreateTimerRequest",
+                          "responseType": "CreateTimerResponse"
+                        },
+                        "DeleteTimer": {
+                          "requestType": "DeleteTimerRequest",
+                          "responseType": "google.protobuf.Empty"
+                        },
+                        "PatchTimer": {
+                          "requestType": "PatchTimerRequest",
+                          "responseType": "PatchTimerResponse"
+                        },
+                        "GetTimer": {
+                          "requestType": "GetTimerRequest",
+                          "responseType": "GetTimerResponse"
+                        },
+                        "ListTimers": {
+                          "requestType": "ListTimersRequest",
+                          "responseType": "ListTimersResponse"
+                        },
+                        "AddConfigsToTimer": {
+                          "requestType": "AddConfigsToTimerRequest",
+                          "responseType": "google.protobuf.Empty"
+                        },
+                        "RemoveConfigsFromTimer": {
+                          "requestType": "RemoveConfigsFromTimerRequest",
+                          "responseType": "google.protobuf.Empty"
                         }
                       }
                     },
@@ -226,6 +262,157 @@
                         }
                       }
                     },
+                    "OpTaskState": {
+                      "fields": {
+                        "at": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 1
+                        },
+                        "state": {
+                          "type": "ai.metathings.constant.state.TaskState",
+                          "id": 2
+                        },
+                        "tags": {
+                          "type": "google.protobuf.Struct",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "TaskState": {
+                      "fields": {
+                        "at": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 1
+                        },
+                        "state": {
+                          "type": "ai.metathings.constant.state.TaskState",
+                          "id": 2
+                        },
+                        "tags": {
+                          "type": "google.protobuf.Struct",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "OpTask": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "createdAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 2
+                        },
+                        "updatedAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
+                        },
+                        "currentState": {
+                          "type": "OpTaskState",
+                          "id": 4
+                        },
+                        "source": {
+                          "type": "OpResource",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "Task": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "createdAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 2
+                        },
+                        "updatedAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
+                        },
+                        "currentState": {
+                          "type": "TaskState",
+                          "id": 4
+                        },
+                        "source": {
+                          "type": "Resource",
+                          "id": 8
+                        },
+                        "states": {
+                          "rule": "repeated",
+                          "type": "TaskState",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "OpTimer": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 24
+                        },
+                        "description": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 25
+                        },
+                        "schedule": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 8
+                        },
+                        "timezone": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 9
+                        },
+                        "enabled": {
+                          "type": "google.protobuf.BoolValue",
+                          "id": 10
+                        },
+                        "configs": {
+                          "rule": "repeated",
+                          "type": "ai.metathings.service.deviced.OpConfig",
+                          "id": 11
+                        }
+                      }
+                    },
+                    "Timer": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 24
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 25
+                        },
+                        "schedule": {
+                          "type": "string",
+                          "id": 8
+                        },
+                        "timezone": {
+                          "type": "string",
+                          "id": 9
+                        },
+                        "enabled": {
+                          "type": "bool",
+                          "id": 10
+                        },
+                        "configs": {
+                          "rule": "repeated",
+                          "type": "ai.metathings.service.deviced.Config",
+                          "id": 11
+                        }
+                      }
+                    },
                     "DeleteEvaluatorRequest": {
                       "fields": {
                         "evaluator": {
@@ -345,6 +532,1325 @@
                           "type": "Evaluator",
                           "id": 1
                         }
+                      }
+                    },
+                    "ListTasksBySourceRequest": {
+                      "fields": {
+                        "source": {
+                          "type": "OpResource",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        },
+                        "rangeFrom": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 2
+                        },
+                        "rangeTo": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ListTasksBySourceResponse": {
+                      "fields": {
+                        "tasks": {
+                          "rule": "repeated",
+                          "type": "Task",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "GetTaskRequest": {
+                      "fields": {
+                        "task": {
+                          "type": "OpTask",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        }
+                      }
+                    },
+                    "GetTaskResponse": {
+                      "fields": {
+                        "task": {
+                          "type": "Task",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "CreateTimerRequest": {
+                      "fields": {
+                        "timer": {
+                          "type": "OpTimer",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        }
+                      }
+                    },
+                    "CreateTimerResponse": {
+                      "fields": {
+                        "timer": {
+                          "type": "Timer",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "DeleteTimerRequest": {
+                      "fields": {
+                        "timer": {
+                          "type": "OpTimer",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        }
+                      }
+                    },
+                    "PatchTimerRequest": {
+                      "fields": {
+                        "timer": {
+                          "type": "OpTimer",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        }
+                      }
+                    },
+                    "PatchTimerResponse": {
+                      "fields": {
+                        "timer": {
+                          "type": "Timer",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "GetTimerRequest": {
+                      "fields": {
+                        "timer": {
+                          "type": "OpTimer",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        }
+                      }
+                    },
+                    "GetTimerResponse": {
+                      "fields": {
+                        "timer": {
+                          "type": "Timer",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "ListTimersRequest": {
+                      "fields": {
+                        "timer": {
+                          "type": "OpTimer",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        }
+                      }
+                    },
+                    "ListTimersResponse": {
+                      "fields": {
+                        "timers": {
+                          "rule": "repeated",
+                          "type": "Timer",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "AddConfigsToTimerRequest": {
+                      "fields": {
+                        "timer": {
+                          "type": "OpTimer",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        },
+                        "configs": {
+                          "rule": "repeated",
+                          "type": "ai.metathings.service.deviced.OpConfig",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "RemoveConfigsFromTimerRequest": {
+                      "fields": {
+                        "timer": {
+                          "type": "OpTimer",
+                          "id": 1,
+                          "options": {
+                            "(validator.field).msg_exists": true
+                          }
+                        },
+                        "configs": {
+                          "rule": "repeated",
+                          "type": "ai.metathings.service.deviced.OpConfig",
+                          "id": 2
+                        }
+                      }
+                    }
+                  }
+                },
+                "deviced": {
+                  "options": {
+                    "go_package": "deviced"
+                  },
+                  "nested": {
+                    "Device": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "kind": {
+                          "type": "ai.metathings.constant.kind.DeviceKind",
+                          "id": 2
+                        },
+                        "state": {
+                          "type": "ai.metathings.constant.state.DeviceState",
+                          "id": 3
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 21
+                        },
+                        "modules": {
+                          "rule": "repeated",
+                          "type": "Module",
+                          "id": 6
+                        },
+                        "heartbeatAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 7
+                        },
+                        "flows": {
+                          "rule": "repeated",
+                          "type": "Flow",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "OpDevice": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "kind": {
+                          "type": "ai.metathings.constant.kind.DeviceKind",
+                          "id": 2
+                        },
+                        "state": {
+                          "type": "ai.metathings.constant.state.DeviceState",
+                          "id": 3
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 4
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 5
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "google.protobuf.StringValue",
+                          "id": 21
+                        },
+                        "modules": {
+                          "rule": "repeated",
+                          "type": "OpModule",
+                          "id": 6
+                        },
+                        "heartbeatAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 7
+                        },
+                        "flows": {
+                          "rule": "repeated",
+                          "type": "OpFlow",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "Module": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "state": {
+                          "type": "ai.metathings.constant.state.ModuleState",
+                          "id": 2
+                        },
+                        "deviceId": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "endpoint": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "component": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 7
+                        },
+                        "heartbeatAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "OpModule": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "state": {
+                          "type": "ai.metathings.constant.state.ModuleState",
+                          "id": 2
+                        },
+                        "deviceId": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "endpoint": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 4
+                        },
+                        "component": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 5
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 6
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 7
+                        },
+                        "heartbeatAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "Flow": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "deviceId": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "OpFlow": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "deviceId": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "Frame": {
+                      "fields": {
+                        "ts": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 1
+                        },
+                        "data": {
+                          "type": "google.protobuf.Struct",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "OpFrame": {
+                      "fields": {
+                        "ts": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 1
+                        },
+                        "data": {
+                          "type": "google.protobuf.Struct",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "FlowSet": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "flows": {
+                          "rule": "repeated",
+                          "type": "Flow",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "OpFlowSet": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "flows": {
+                          "rule": "repeated",
+                          "type": "OpFlow",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "Object": {
+                      "fields": {
+                        "device": {
+                          "type": "Device",
+                          "id": 1
+                        },
+                        "prefix": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "length": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "etag": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "lastModified": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "OpObject": {
+                      "fields": {
+                        "device": {
+                          "type": "OpDevice",
+                          "id": 1
+                        },
+                        "prefix": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "length": {
+                          "type": "google.protobuf.Int64Value",
+                          "id": 4
+                        },
+                        "etag": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 5
+                        },
+                        "lastModified": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "ObjectChunk": {
+                      "fields": {
+                        "offset": {
+                          "type": "int64",
+                          "id": 1
+                        },
+                        "data": {
+                          "type": "bytes",
+                          "id": 2
+                        },
+                        "length": {
+                          "type": "int64",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "ObjectChunks": {
+                      "fields": {
+                        "chunks": {
+                          "rule": "repeated",
+                          "type": "ObjectChunk",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "OpObjectChunk": {
+                      "fields": {
+                        "offset": {
+                          "type": "google.protobuf.Int64Value",
+                          "id": 1
+                        },
+                        "data": {
+                          "type": "google.protobuf.BytesValue",
+                          "id": 2
+                        },
+                        "length": {
+                          "type": "google.protobuf.Int64Value",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "OpObjectChunks": {
+                      "fields": {
+                        "chunks": {
+                          "rule": "repeated",
+                          "type": "OpObjectChunk",
+                          "id": 1
+                        }
+                      }
+                    },
+                    "ErrorValue": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "component": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "method": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "code": {
+                          "type": "uint32",
+                          "id": 4
+                        },
+                        "message": {
+                          "type": "string",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "OpUnaryCallValue": {
+                      "fields": {
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "component": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "method": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "value": {
+                          "type": "google.protobuf.Any",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "UnaryCallValue": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "component": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "method": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "value": {
+                          "type": "google.protobuf.Any",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "OpStreamCallValue": {
+                      "oneofs": {
+                        "union": {
+                          "oneof": [
+                            "value",
+                            "config",
+                            "configAck",
+                            "exit"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "value": {
+                          "type": "google.protobuf.Any",
+                          "id": 1
+                        },
+                        "config": {
+                          "type": "OpStreamCallConfig",
+                          "id": 2
+                        },
+                        "configAck": {
+                          "type": "OpStreamCallConfigAck",
+                          "id": 3
+                        },
+                        "exit": {
+                          "type": "OpStreamCallExit",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "StreamCallValue": {
+                      "oneofs": {
+                        "union": {
+                          "oneof": [
+                            "value",
+                            "config",
+                            "configAck",
+                            "exit"
+                          ]
+                        }
+                      },
+                      "fields": {
+                        "value": {
+                          "type": "google.protobuf.Any",
+                          "id": 1
+                        },
+                        "config": {
+                          "type": "StreamCallConfig",
+                          "id": 2
+                        },
+                        "configAck": {
+                          "type": "StreamCallConfigAck",
+                          "id": 3
+                        },
+                        "exit": {
+                          "type": "StreamCallExit",
+                          "id": 4
+                        }
+                      }
+                    },
+                    "OpStreamCallConfig": {
+                      "fields": {
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "component": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "method": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "StreamCallConfig": {
+                      "fields": {
+                        "name": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "component": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "method": {
+                          "type": "string",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "OpStreamCallConfigAck": {
+                      "fields": {}
+                    },
+                    "StreamCallConfigAck": {
+                      "fields": {}
+                    },
+                    "OpStreamCallExit": {
+                      "fields": {}
+                    },
+                    "StreamCallExit": {
+                      "fields": {}
+                    },
+                    "OpDescriptor": {
+                      "fields": {
+                        "sha1": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "body": {
+                          "type": "google.protobuf.BytesValue",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "Descriptor": {
+                      "fields": {
+                        "sha1": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "body": {
+                          "type": "bytes",
+                          "id": 2
+                        }
+                      }
+                    },
+                    "OpConfig": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "body": {
+                          "type": "google.protobuf.Struct",
+                          "id": 3
+                        }
+                      }
+                    },
+                    "Config": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "body": {
+                          "type": "google.protobuf.Struct",
+                          "id": 3
+                        }
+                      }
+                    }
+                  }
+                },
+                "identityd2": {
+                  "nested": {
+                    "Domain": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "parent": {
+                          "type": "Domain",
+                          "id": 4
+                        },
+                        "children": {
+                          "rule": "repeated",
+                          "type": "Domain",
+                          "id": 5
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "OpDomain": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "parent": {
+                          "type": "OpDomain",
+                          "id": 4
+                        },
+                        "children": {
+                          "rule": "repeated",
+                          "type": "OpDomain",
+                          "id": 5
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "google.protobuf.StringValue",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "Action": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "OpAction": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "description": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 4
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "google.protobuf.StringValue",
+                          "id": 5
+                        }
+                      }
+                    },
+                    "Role": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 3
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 4
+                        },
+                        "actions": {
+                          "rule": "repeated",
+                          "type": "Action",
+                          "id": 5
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "OpRole": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 2
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 3
+                        },
+                        "actions": {
+                          "rule": "repeated",
+                          "type": "OpAction",
+                          "id": 4
+                        },
+                        "description": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 5
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "google.protobuf.StringValue",
+                          "id": 6
+                        }
+                      }
+                    },
+                    "Entity": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "domains": {
+                          "rule": "repeated",
+                          "type": "Domain",
+                          "id": 2
+                        },
+                        "groups": {
+                          "rule": "repeated",
+                          "type": "Group",
+                          "id": 3
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "Role",
+                          "id": 4
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "password": {
+                          "type": "string",
+                          "id": 7
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "OpEntity": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "domains": {
+                          "rule": "repeated",
+                          "type": "OpDomain",
+                          "id": 2
+                        },
+                        "groups": {
+                          "rule": "repeated",
+                          "type": "OpGroup",
+                          "id": 3
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "OpRole",
+                          "id": 4
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 5
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 6
+                        },
+                        "password": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 7
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "google.protobuf.StringValue",
+                          "id": 8
+                        }
+                      }
+                    },
+                    "Group": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "domain": {
+                          "type": "Domain",
+                          "id": 2
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "Role",
+                          "id": 3
+                        },
+                        "subjects": {
+                          "rule": "repeated",
+                          "type": "Entity",
+                          "id": 4
+                        },
+                        "objects": {
+                          "rule": "repeated",
+                          "type": "Entity",
+                          "id": 5
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 7
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 8
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "string",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "OpGroup": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "domain": {
+                          "type": "OpDomain",
+                          "id": 2
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "OpRole",
+                          "id": 3
+                        },
+                        "subjects": {
+                          "rule": "repeated",
+                          "type": "OpEntity",
+                          "id": 4
+                        },
+                        "objects": {
+                          "rule": "repeated",
+                          "type": "OpEntity",
+                          "id": 5
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 6
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 7
+                        },
+                        "description": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 8
+                        },
+                        "extra": {
+                          "keyType": "string",
+                          "type": "google.protobuf.StringValue",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "Credential": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "domain": {
+                          "type": "Domain",
+                          "id": 2
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "Role",
+                          "id": 3
+                        },
+                        "entity": {
+                          "type": "Entity",
+                          "id": 4
+                        },
+                        "name": {
+                          "type": "string",
+                          "id": 5
+                        },
+                        "alias": {
+                          "type": "string",
+                          "id": 6
+                        },
+                        "secret": {
+                          "type": "string",
+                          "id": 7
+                        },
+                        "description": {
+                          "type": "string",
+                          "id": 8
+                        },
+                        "expiresAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "OpCredential": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "domain": {
+                          "type": "OpDomain",
+                          "id": 2
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "OpRole",
+                          "id": 3
+                        },
+                        "entity": {
+                          "type": "OpEntity",
+                          "id": 4
+                        },
+                        "name": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 5
+                        },
+                        "alias": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 6
+                        },
+                        "secret": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 7
+                        },
+                        "description": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 8
+                        },
+                        "expiresAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "Token": {
+                      "fields": {
+                        "id": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "issuedAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 2
+                        },
+                        "expiresAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
+                        },
+                        "entity": {
+                          "type": "Entity",
+                          "id": 4
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "Role",
+                          "id": 5
+                        },
+                        "domain": {
+                          "type": "Domain",
+                          "id": 6
+                        },
+                        "credential": {
+                          "type": "Credential",
+                          "id": 7
+                        },
+                        "text": {
+                          "type": "string",
+                          "id": 8
+                        },
+                        "groups": {
+                          "rule": "repeated",
+                          "type": "Group",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "OpToken": {
+                      "fields": {
+                        "id": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 1
+                        },
+                        "issuedAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 2
+                        },
+                        "expiresAt": {
+                          "type": "google.protobuf.Timestamp",
+                          "id": 3
+                        },
+                        "entity": {
+                          "type": "OpEntity",
+                          "id": 4
+                        },
+                        "roles": {
+                          "rule": "repeated",
+                          "type": "OpRole",
+                          "id": 5
+                        },
+                        "domain": {
+                          "type": "OpDomain",
+                          "id": 6
+                        },
+                        "credential": {
+                          "type": "OpCredential",
+                          "id": 7
+                        },
+                        "text": {
+                          "type": "google.protobuf.StringValue",
+                          "id": 8
+                        },
+                        "groups": {
+                          "rule": "repeated",
+                          "type": "OpGroup",
+                          "id": 9
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "constant": {
+              "nested": {
+                "state": {
+                  "nested": {
+                    "TaskState": {
+                      "values": {
+                        "TASK_STATE_UNKNOWN": 0,
+                        "TASK_STATE_CREATED": 10,
+                        "TASK_STATE_PENDING": 20,
+                        "TASK_STATE_RUNNING": 30,
+                        "TASK_STATE_DONE": 40,
+                        "TASK_STATE_ERROR": 50
+                      }
+                    },
+                    "DeviceState": {
+                      "values": {
+                        "DEVICE_STATE_UNKNOWN": 0,
+                        "DEVICE_STATE_ONLINE": 1,
+                        "DEVICE_STATE_OFFLINE": 2
+                      }
+                    },
+                    "ModuleState": {
+                      "values": {
+                        "MODULE_STATE_UNKNOWN": 0,
+                        "MODULE_STATE_ONLINE": 1,
+                        "MODULE_STATE_OFFLINE": 2
+                      }
+                    }
+                  }
+                },
+                "kind": {
+                  "nested": {
+                    "DeviceKind": {
+                      "values": {
+                        "DEVICE_KIND_UNKNOWN": 0,
+                        "DEVICE_KIND_SIMPLE": 1,
+                        "DEVICE_KIND_ADVANCED": 2
                       }
                     }
                   }
@@ -1322,6 +2828,30 @@
                   "rule": "repeated",
                   "type": "Value",
                   "id": 1
+                }
+              }
+            },
+            "Timestamp": {
+              "fields": {
+                "seconds": {
+                  "type": "int64",
+                  "id": 1
+                },
+                "nanos": {
+                  "type": "int32",
+                  "id": 2
+                }
+              }
+            },
+            "Any": {
+              "fields": {
+                "type_url": {
+                  "type": "string",
+                  "id": 1
+                },
+                "value": {
+                  "type": "bytes",
+                  "id": 2
                 }
               }
             }
