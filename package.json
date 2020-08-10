@@ -1,6 +1,6 @@
 {
   "name": "@nayotta/metathings-node",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,7 @@
   "homepage": "https://github.com/nayotta/metathings-node#readme",
   "dependencies": {
     "google-protobuf": "^3.9.1",
-    "grpc": "^1.23.2",
+    "grpc": "^1.24.3",
     "protobufjs": "^6.10.1"
   },
   "devDependencies": {
