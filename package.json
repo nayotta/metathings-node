@@ -1,10 +1,11 @@
 {
   "name": "@nayotta/metathings-node",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
     "generate": "bash generate.sh",
     "test": "./node_modules/.bin/mocha --file test/**/*_test.js"
   },
@@ -24,7 +25,11 @@
     "protobufjs": "^6.10.1"
   },
   "devDependencies": {
-    "eslint": "^6.2.2",
+    "eslint": "^7.29.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "mocha": "^7.1.2",
     "pre-commit": "^1.2.2"
   },

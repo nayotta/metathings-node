@@ -15,7 +15,7 @@ describe('Deviced', function () {
           device: {
             id: 'device-id',
             name: 'device-name',
-            flows:[{
+            flows: [{
               name: 'flow-name1'
             }]
           }

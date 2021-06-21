@@ -33,7 +33,7 @@ describe('Evaluatord', function () {
               {
                 listField: 1
               },
-              [ 1, '12' ]
+              [1, '12']
             ]
           }
         }
