@@ -1,6 +1,8 @@
 # metathings-node
 
-node module for metathings
+[![Build and Lint](https://github.com/nayotta/metathings-node/actions/workflows/build.yml/badge.svg)](https://github.com/nayotta/metathings-node/actions/workflows/build.yml)
+
+node module for metathings grpc api
 
 # install
   ```
